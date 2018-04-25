@@ -30,6 +30,20 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">Table Reservation</h4>
+                <div class="card" style="width: 54rem;">
+                    <div class="card-header">
+                      Active Reservations
+                    </div>
+                    <table id="tbody">                      
+                    </table>                    
+                  </div>
+                  <br>
+                  <div class="card-header">
+                    Wait List
+                  </div>
+                  <table id="wbody">                      
+                  </table>                    
+                </div>
             </div>
         </div>
         <div>
@@ -43,14 +57,39 @@
     
     $(document).ready(function(){
         
-        $.get("/api/tables/active/" +  function(data) {
+        $.get("/api/tables/active/" ,  function(data) {
             if (data) {
                 for (var i = 0; i <data.length; i++){
-                $("#id").append(data.id);
+               
+                var tBody = $("#tbody");
+                var tRow = $("<tr>");
+                var name = $("<td>").text(data[i].id);
+
+                tRow.append(name);
+    
+                tBody.append(tRow);
+                }
             }
-        }
+            });
+
+            $.get("/api/tables/waitList/" ,  function(data) {
+            if (data) {
+                for (var i = 0; i <data.length; i++){
+               
+                var tBody = $("#wbody");
+                var tRow = $("<tr>");
+                var name = $("<td>").text(data[i].id);
+
+                tRow.append(name);
+    
+                tBody.append(tRow);
+                }
+            }
+        });
     });
-});
+        
+    
+
     </script>
 </body>
 
