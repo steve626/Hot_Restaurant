@@ -39,10 +39,11 @@ app.post("/api/activeReservations", function(req, res) {
     if (activeReservations.length <= 4) {    
 
     activeReservations.push(newRes);
+    console.log("added to active reservations")
 
     res.json(activeReservations);
     } else {
-
+        console.log("added to waitlist");
         waitList.push(newRes);
 
         res.json(waitList);

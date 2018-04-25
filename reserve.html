@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reservation Page</title>
@@ -52,10 +54,10 @@
 
                     <div class="form-group">
                         <label for="unique-id">Unique ID:</label>
-                        <input type="text" class="form-control" id="id">
+                        <input type="text" class="form-control" id="unique-id">
                     </div>
 
-                    <button type="submit" class="btn btn-primary submit">Submit</button>
+                    <button id="add-reservation" type="submit" class="btn btn-primary submit">Submit</button>
                 </form>
 
             </div>
@@ -67,6 +69,26 @@
         </div>
 
     </div>
+    <script>
+        $("#add-reservation").on('click', function (event) {
+            event.preventDefault();
+
+            var reservation = {
+                name: $("#name").val(),
+                phone: $("#phone").val(),
+                email: $("#email").val(),
+                id: $("#unique-id").val()
+            }
+            console.log("submit buttoned pressed");
+            $.ajax({
+                method: 'POST',
+                url: "/api/activeReservations",
+                data: reservation,
+            }).then(function (data) {
+                console.log("Adding reservation " + data);
+            })
+        });
+    </script>
 
 </body>
 
