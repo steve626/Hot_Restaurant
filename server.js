@@ -9,8 +9,8 @@ var PORT = 3000;
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
-var activeReservations = [{name: "kyle"}];
-var waitList =[{name: "not-kyle"}];
+var activeReservations = [];
+var waitList =[];
 
 
 app.listen(PORT, function() {
