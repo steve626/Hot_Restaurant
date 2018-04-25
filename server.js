@@ -13,6 +13,18 @@ var activeReservations = [];
 var waitList =[];
 
 
+
+app.post("/api/reservations", function(req, res) {
+    
+    var newRes = req.body;
+
+    reservations.push(newRes);
+
+    res.json(newRes);
+
+});
+
+
 app.listen(PORT, function() {
     console.log("App listening on port: " + PORT);
-})
+});
