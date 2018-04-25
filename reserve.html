@@ -21,7 +21,7 @@
                     <button class="btn btn-lg btn-light">
                         Home</button>
                 </a>
-                <a href="/table">
+                <a href="/tables">
                     <button class="btn btn-lg btn-danger">
                         View Tables</button>
                 </a>
@@ -61,13 +61,31 @@
             </div>
         </div>
         <div>
-            <a href="">API Table Link</a>
-            <a href="">API Wait List</a>
+            <a href="">API Table Link</a> |
+            <a href="">API Wait List</a> |
             <a href="">Github Repo</a>
         </div>
 
     </div>
 
+    <script type="text/javascript">
+        // Question: What does this code do?
+        $(".submit").on("click", function (event) {
+            event.preventDefault();
+            var newReserve = {
+                name: $("#name").val().trim(),
+                number: $("#number").val().trim(),
+                email: $("#email").val().trim(),
+                id: $("#id").val().trim()
+            };
+
+            // Question: What does this code do??
+            $.post("/api/characters", newReserve)
+                .then(function (data) {
+                    console.log("reserve.html", data);
+                });
+        });
+    </script>
 </body>
 
 </html>
