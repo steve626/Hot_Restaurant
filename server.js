@@ -12,7 +12,25 @@ app.use(bodyParser.json());
 var activeReservations = [];
 var waitList =[];
 
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "home.html"));
+});
 
+app.get("/tables", function(req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
+});
+
+app.get("/reserve", function(req, res) {
+    res.sendFile(path.join(__dirname, "reserve.html"));
+});
+
+app.get("/api/tables/active", function(req, res) {
+    return res.json(activeReservations);
+});
+
+app.get("/api/tables/waiting", function(req, res) {
+    return res.json(waitList);
+});
 
 app.post("/api/activeReservations", function(req, res) {
     
