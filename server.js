@@ -14,13 +14,21 @@ var waitList =[];
 
 
 
-app.post("/api/reservations", function(req, res) {
+app.post("/api/activeReservations", function(req, res) {
     
     var newRes = req.body;
 
-    reservations.push(newRes);
+    if (activeReservations.length <= 4) {    
+
+    activeReservations.push(newRes);
 
     res.json(newRes);
+    } else {
+
+        waitList.push(newRes);
+
+        res.json(newRes);
+    }
 
 });
 
