@@ -16,7 +16,7 @@ app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "home.html"));
 });
 
-app.get("/tables", function(req, res) {
+app.get("/table", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
 });
 
@@ -40,16 +40,15 @@ app.post("/api/activeReservations", function(req, res) {
 
     activeReservations.push(newRes);
 
-    res.json(newRes);
+    res.json(activeReservations);
     } else {
 
         waitList.push(newRes);
 
-        res.json(newRes);
+        res.json(waitList);
     }
 
 });
-
 
 app.listen(PORT, function() {
     console.log("App listening on port: " + PORT);
